@@ -1,0 +1,246 @@
+body{
+    background-color:#E7EAEB
+}
+.main-bg-color{
+    background-color:#153438;
+}
+.secondry-bg-color{
+    background-color:#E4960E;
+}
+.main-text-color{
+    color:#153438;
+}
+.secondry-text-color{
+  color:#E4960E;
+}
+.secodry-border-top-color{
+  border-top: 3px solid #E4960E;
+}
+.secodry-border-bottom-color{
+  border-bottom: 3px solid #E4960E;
+}
+.secodry-border-color{
+    border-color:  #E4960E;
+}
+
+
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    z-index: 999;
+    background: #153438;
+    color: #fff;
+    transition: all 0.3s;
+    overflow-y: scroll;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+a{
+    color: #fff;
+}
+#sidebar.active {
+    left: 0;
+}
+
+#dismiss {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: #153438;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #fff;
+}
+#dismiss:hover {
+    background: #153438;
+    color: #E4960E;
+}
+
+.overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    display: none;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background:#153438;
+    
+}
+#sidebar .sidebar-header h3{
+    color:#fff;
+    font-weight: bold;
+    
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #153438;
+}
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color:#fff;
+}
+#sidebar ul li a:hover {
+    color:#fff;
+    background: #E4960E;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background:#E4960E;
+}
+
+#sidebar ul li .active{
+    color: #fff;
+    background-color:#E4960E;
+}
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #153438;
+    color: #E4960E;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: #E4960E;
+}
+a.download {
+    background: #E4960E;
+    color: #134fc8;
+}
+a.article, a.article:hover {
+    background: #153438 !important;
+    color: #E4960E!important;
+}
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+/* ---------------------------------------------------
+    /SIDEBAR STYLE
+----------------------------------------------------- */
+    /* 
+    ##Device = Desktops
+    ##Screen = 1281px to higher resolution desktops
+    */
+
+    @media (min-width: 1281px) {
+    
+        /* CSS */
+        
+    }
+    
+    /* 
+        ##Device = Laptops, Desktops
+        ##Screen = B/w 1025px to 1280px
+    */
+    
+    @media (min-width: 1025px) and (max-width: 1280px) {
+        
+        /* CSS */
+        
+    }
+    
+    /* 
+        ##Device = Tablets, Ipads (portrait)
+        ##Screen = B/w 768px to 1024px
+    */
+    
+    @media (min-width: 768px) and (max-width: 1024px) {
+        
+        /* CSS */
+        
+    }
+    @media (max-width: 992px){
+        .nav-logo{
+            display:none;
+        }
+        /* CSS */
+    }
+    @media (min-width: 992px){
+        .user-logo{
+            display:none;
+        }
+        /* CSS */
+    }
+    /* 
+        ##Device = Tablets, Ipads (landscape)
+        ##Screen = B/w 768px to 1024px
+    */
+    
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        
+        /* CSS */
+        
+    }
+    
+    /* 
+        ##Device = Low Resolution Tablets, Mobiles (Landscape)
+        ##Screen = B/w 481px to 767px
+    */
+    
+    @media (min-width: 481px) and (max-width: 767px) {
+        
+        /* CSS */
+        
+    }
+    
+    /* 
+        ##Device = Most of the Smartphones Mobiles (Portrait)
+        ##Screen = B/w 320px to 479px
+    */
+    
+    @media (min-width: 320px) and (max-width: 480px) {
+        
+        /* CSS */
+        
+    }
