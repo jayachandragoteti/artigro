@@ -1,58 +1,615 @@
 <?PHP 
 include 'db.php';
 session_start();
-/* function pproduct_card(){ ob_start(); ?> <?PHP return ob_get_clean(); } ?> */
-function category_card($category_image,$category_name){ ob_start(); ?>  
-<!--<div class="col-lg-3 col-md-3 mt-5">
-    <div class="card bg-dark text-white" >
-        <img class="card-img" data-src="product_images/<?PHP echo $category_image;?>" alt="<?PHP echo $category_name;?>" src="product_images/<?PHP echo $category_image;?>" data-holder-rendered="true" >
-        <div class="card-img-overlay">
-            <h1 class="card-title text-white"><?PHP echo $category_name;?></h1>
-        </div>
-    </div>
-</div>-->
-<div class="col-xs-12 col-sm-3 col-lg-3 col-md-3">
-	<div class="banner-block" >
-		<a href="#" onclick=""> <img src="product_images/<?PHP echo $category_image;?>" alt="<?PHP echo $category_name;?>" style="height:20rem;width:20rem;"> </a>
-		<div class="text-des-container">
-			<div class="text-des">
-				<h2><?PHP echo $category_name;?></h2>
-				<a href="#"><button class="btn main-bg-color" type="button"><i class="icofont icofont-shopping-cart"></i> SHOP NOW</button></a>
-			</div>
-		</div>
-	</div>
-</div>
+/* 
+//  Card
+function pproduct_card(){ ob_start(); ?>
 <?PHP return ob_get_clean(); }
-function city_card($CitySno,$city_name){ ob_start(); ?> 
-<a href="#" onclick="">
-    <div class="col-lg-2 col-md-2 ">
-        <div class="about_page_widget widget rounded-circle">
-            <i class="fa fa-map-marker"></i>
-            <h2><strong><?PHP echo $city_name;?></strong></h2>
+// End Card
+function Card(){ ob_start(); ?>
+<a href="#">
+    <div class="container bcontent">
+        <div class="card text-muted" style="width: 20rem;">
+            <img class="card-img" src="https://mdbootstrap.com/img/new/standard/nature/182.jpg" alt="Suresh Dasari Card">
+            <div class="card-img-overlay">
+                <h5 class="card-title">Suresh Dasari</h5>
+                <p class="card-text">Suresh Dasari is a founder and technical lead developer in tutlane.</p>
+                <a href="#" class="btn btn-warning float-right text-white bottom-0">View Profile</a>
+            </div>
         </div>
     </div>
 </a>
 
-<?PHP return ob_get_clean(); }
-function seller_card(){ ob_start(); ?> 
-<a href="#">
-    <div class="col-lg-4 col-md-4">
-        <div class="our-team widget">
-            <div class="team_img">
-                <img src="site/seller.png">
-                <ul class="social">
-                    <li><a href="#"><i class="fa fa-email"></i></a></li>
-                    <li><a href="#"><i class="fa fa-phone"></i></a></li>
-                </ul>
+
+      <div class="col-lg-3 col-md-3">
+        <div class="item">
+          <div class="h-100">
+            <div class="product-item product-item-list">
+              <span class="badge badge-default offer-badge">NEW</span>
+              <div class="product-item-image">
+                <a href="#"><img class="card-img-top img-fluid" src="site/banners/banner  (1).JPG" alt="" ></a>
+              </div>
+              <div class="product-item-body">
+                <h4 class="card-title"><a href="#">Lorem epsomdor geruam karugds sapudra</a></h4>
+                <h5>
+                <span class="product-desc-price">$200.00</span>
+                <span class="product-price">$100.00</span>
+                <span class="product-discount">50% Off</span>
+                </h5>
+              </div>
+              <div class="product-item-footer">
+                <div class="stars-rating">
+                  <i class="icofont icofont-star active"></i>
+                  <i class="icofont icofont-star active"></i>
+                  <i class="icofont icofont-star active"></i>
+                  <i class="icofont icofont-star active"></i>
+                  <i class="icofont icofont-star active"></i> <span>(44)</span>
+                </div>
+              </div>
+              <div class="list-product-item-size">
+                <strong>Size</strong> <span>S</span> <span>M</span> <span>L</span> <span> XL</span> <span> 2XL</span>
+              </div>
+              <div class="list-product-item-action">
+                <a class="btn btn-theme-round" href="#"><i class="icofont icofont-shopping-cart"></i> Add To Cart</a>
+                <a data-toggle="tooltip" data-placement="top" title="" class="btn btn-danger" href="#" data-original-title="SAVE"><i class="icofont icofont-heart"></i></a>
+              </div>
             </div>
-            <div class="team-content">
-                <h3 class="title">Osahan</h3>
-                <span class="post">CEO</span>
+          </div>
+        </div>
+      </div>
+<?PHP return ob_get_clean(); } 
+*/
+//  No Data Found Card
+function NoDataFound(){ ob_start(); ?>
+<div class="container">
+    <a href="#" onclick="AjaxIndexPageCall()">
+        <div class="row justify-content-md-center align-items-center">
+            <div class='col-sm d-flex  justify-content-center mt-5'>
+                <span class='btn btn-danger'><i class='icofont icofont-fa-frown-open'></i> No Data Found</span>
+            </div>
+        </div>
+    </a>
+</div>
+
+<?PHP return ob_get_clean(); }
+// End No Data Found Card
+// Category Card
+function category_card($cat_sno,$category_image,$category_name){ ob_start(); ?>
+<div class="col-lg-3 col-md-6 col-sm-6 mt-5">
+    <div class="item">
+        <div class="h-100">
+            <div class="product-item pro">
+                <h4><span class="badge badge-warning offer-badge text-white"><?PHP echo $category_name;?></span></h4>
+                <div class="product-item-image">
+                    <a href="#" onclick="AjaxShowCategoryProductsPageCall('<?PHP echo $cat_sno;?>','<?PHP echo $category_name;?>')"><img class="card-img-top img-fluid" src="product_images/<?PHP echo $category_image;?>" style="height:20rem;" alt="<?PHP echo $category_name;?>"></a>
+                </div>
             </div>
         </div>
     </div>
-</a>
+</div> 
 <?PHP return ob_get_clean(); }
+// End Category Card
+// City Card
+function CityCard($CitySno,$CityName){ ob_start(); ?> 
+<div class="col-lg-3 col-md-3 mt-2 mt-5">
+    <a href="#" onclick="CityViceSellers('<?PHP echo $CitySno;?>')">
+        <div class="about_page_widget widget">
+            <i class="icofont icofont-city"></i>
+            <h5><?PHP echo $CityName;?></h5>
+        </div>
+    </a>
+</div>
+<?PHP return ob_get_clean(); }
+// End City Card
+// Show Category Products Card
+function ShowCategoryProducts($SelectProductsRow){ ob_start(); ?> 
+<div class="col-lg-3 col-md-6 mt-5">
+    <div class="item">
+        <div class="h-100">
+            <div class="product-item">
+                <div class="product-item-image">
+                    <a href="#" onclick="ProductView('<?PHP echo $SelectProductsRow['pro_sno'];?>')"><img class="card-img-top img-fluid" src="product_images/<?PHP echo $SelectProductsRow['pro_img1'];?>" style="height:15rem;"></a>
+                </div>
+                <a href="#" onclick="ProductView('<?PHP echo $SelectProductsRow['pro_sno'];?>')">
+                    <div class="product-item-body">
+                        <p class="Add-To-Cart-Wishlist-Alerts-<?PHP echo $SelectProductsRow['pro_sno'];?>-Product text-danger"></p>
+                        <!-- <div class="product-item-action">
+                            <a data-toggle="tooltip" data-placement="top" title="" class="btn btn-theme-round btn-sm" href="#" data-original-title="Add To Cart"><i class="fa fa-heart"></i></a>
+                            <a data-toggle="tooltip" data-placement="top" title="" class="btn btn-theme-round btn-sm" href="#" data-original-title="View Detail"><i class="fa fa-cart-plus"></i></a>
+                        </div> -->
+                        <h4 class="card-title"><a href="#"><?PHP echo $SelectProductsRow['pro_name'];?></a></h4>
+                        <h5>
+                            <span class="product-price"><i class="fa fa-rupee-sign"></i> <?PHP echo $SelectProductsRow['pro_cost'];?>/-</span>
+                        </h5>
+                        <?PHP if(isset($_SESSION['login'])){?>
+                            <a class="btn btn-warning" href="#" onclick="AddToWishlist('<?PHP echo $SelectProductsRow['pro_sno'];?>')"><i class="fa fa-heart text-white"></i></a>
+                            <a class="btn btn-success" href="#" onclick="AddToCart('<?PHP echo $SelectProductsRow['pro_sno'];?>')"><i class="fa fa-cart-plus text-white"></i></a>
+
+                        <?PHP }else {?>
+                            <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#login-register-modal"><i class="fa fa-heart text-white"></i></a>
+                            <a class="btn btn-success" href="#" data-toggle="modal" data-target="#login-register-modal" ><i class="fa fa-cart-plus text-white"></i></a>
+                        <?PHP }?>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function ProductView(ProSno) {
+    var formdata ={
+        ProductView:"ProductView",
+        ProSno:ProSno
+    }
+    $.ajax({
+        type:"POST",
+        url:"backend.php",
+        data:formdata,
+        success:function (responce) {
+            $(".AjaxContentDisplay").html(responce);
+        }
+    });
+}
+</script>
+
+<?PHP return ob_get_clean(); }
+// End Show Category Products Card
+// My Products Card
+function MyProductsCard($pro_sno,$pro_name,$cat_name,$category_sno,$pro_cost,$pro_img1){ ob_start(); ?> 
+<div class="col-lg-3 col-md-3 col-sm-6 mt-5">
+    <a href="#" onclick="MyProductView('<?PHP echo $pro_sno;?>')" >
+        <div class="h-100">
+            <div class="product-item">
+                <div class="product-item-image">
+                    <img class="card-img-top img-fluid" src="product_images/<?PHP echo $pro_img1;?>" style="width:20rem;height:15rem;" alt="<?PHP echo $pro_name;?> ">
+                </div>
+                <div class="product-item-body">
+                    <div class="product-item-action">
+                        <a data-toggle="tooltip" data-placement="top" title="" class="btn btn-theme-round btn-sm" href="#"  onclick="MyProductView(<?PHP echo $pro_sno;?>)"><i class="icofont icofont-eye"></i></a>
+                    </div>
+                    <h4 class="card-title"><?PHP echo $pro_name;?> (<?PHP echo $cat_name;?>)</h4>
+                    <h5>
+                        <span class="product-price"><i class="icofont icofont-rupee-sign"></i> <?PHP echo $pro_cost;?></span>
+                    </h5>
+                </div>
+                <div class="product-item-footer">
+                    <div class="product-item-size">
+                        <h4 class="card-title"><?PHP echo $pro_name;?> (<?PHP echo $cat_name;?>)</h4>
+                    </div>
+                    <!--<div class="stars-rating">
+                        <i class="icofont icofont-star active"></i>
+                        <i class="icofont icofont-star active"></i>
+                        <i class="icofont icofont-star active"></i>
+                        <i class="icofont icofont-star"></i>
+                        <i class="icofont icofont-star"></i> <span>(415)</span>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+<?PHP return ob_get_clean(); } 
+// End My Products Card
+// My Wishlist Card
+function MyWishlistCard($ProductDetailsRow,$CategoryDetailsRow,$SubCategoryDetailsRow,$SellerDetailsRow,$CityDetailsRow,$UserDetailsRow){ ob_start(); ?> 
+<div class="col-lg-3 col-md-6 col-sm-6 mt-5 ">
+    <div class="h-100">
+        <div class="product-item">
+            <div class="product-item-image">
+                <span class="like-icon"><a href="#" onclick="DeleteFromWishlist('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"> <i class="icofont icofont-close-circled"></i></a></span>
+                <a href="#" onclick="ProductView('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"><img class="card-img-top img-fluid" src="product_images/<?PHP echo $ProductDetailsRow['pro_img1'];?>" style="width:20rem;height:15rem;" alt="ARTIGRO"></a>
+            </div>
+            <a href="#" onclick="ProductView('<?PHP echo $ProductDetailsRow['pro_sno'];?>')">
+                <div class="product-item-body">
+                    <h4 class="card-title"><a href="#"><?PHP echo $ProductDetailsRow['pro_name'];?></a></h4>
+                    <h5>
+                        <span class="product-price"><?PHP echo $ProductDetailsRow['pro_cost'];?></span>
+                    </h5>
+                    <p class="Add-To-Cart-Wishlist-Alerts-<?PHP echo $pro_sno;?>-Product"></p>
+                    <p>
+                        <a class="btn btn-success" href="#" onclick="AddToCart('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"><i class="icofont icofont-shopping-cart"></i> Add To Cart</a>
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<?PHP return ob_get_clean(); }
+// End My Wishlist Card
+// My Cart Card
+function MyCartCard($ProductDetailsRow,$CategoryDetailsRow,$SubCategoryDetailsRow,$SellerDetailsRow,$CityDetailsRow,$UserDetailsRow){ ob_start(); ?> 
+    <div class="col-lg-3 col-md-6 col-sm-6 mt-5">
+        <div class="h-100">
+            <div class="product-item">
+                <div class="product-item-image">
+                    <span class="like-icon"><a href="#" onclick="DeleteFromCart('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"> <i class="icofont icofont-close-circled"></i></a></span>
+                    <a href="#" onclick="ProductView('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"><img class="card-img-top img-fluid" src="product_images/<?PHP echo $ProductDetailsRow['pro_img1'];?>" style="width:20rem;height:15rem;" alt="ARTIGRO"></a>
+                </div>
+                <a href="#" onclick="ProductView('<?PHP echo $ProductDetailsRow['pro_sno'];?>')">
+                    <div class="product-item-body">
+                        <h4 class="card-title"><a href="#"><?PHP echo $ProductDetailsRow['pro_name'];?></a></h4>
+                        <h5>
+                            <span class="product-price"><?PHP echo $ProductDetailsRow['pro_cost'];?></span>
+                        </h5>
+                        <p class="Add-To-Cart-Wishlist-Alerts-<?PHP echo $pro_sno;?>-Product"></p>
+                        <p>
+                            <a class="btn btn-success" href="#" onclick="ProductView('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"><i class="icofont icofont-eye"></i>View</a>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+<?PHP return ob_get_clean(); }
+// End My Cart Card
+// Product View Card
+function ProductViewCard($ProductDetailsRow,$CategoryDetailsRow,$SubCategoryDetailsRow,$SellerDetailsRow,$CityDetailsRow,$UserDetailsRow){ ob_start(); ?> 
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 mt-5">
+            <div class="panel blog-box">
+                <div class="panel-image">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img src="product_images/<?PHP echo $ProductDetailsRow['pro_img1'];?>" class="d-block w-100 img-responsive" style="height:22rem;" alt="ARTIGRO">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="product_images/<?PHP echo $ProductDetailsRow['pro_img2'];?>" class="d-block w-100 img-responsive" style="height:22rem;" alt="ARTIGRO">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="product_images/<?PHP echo $ProductDetailsRow['pro_img3'];?>" class="d-block w-100 img-responsive" style="height:22rem;" alt="ARTIGRO">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="title">
+                        <a href="blog-single.html">
+                        <!-- <h4><?PHP echo $ProductDetailsRow['pro_name'];?></h4>  -->
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <h5><?PHP echo $ProductDetailsRow['pro_name'];?></h5>
+                    <p class="mb-2 text-danger text-uppercase small Add-To-Cart-Wishlist-Alerts-<?PHP echo $ProductDetailsRow['pro_sno'];?>-Product text-warning"></p>
+                    <p><span class="mr-1"><strong>$<?PHP echo $ProductDetailsRow['pro_cost'];?></strong></span></p>
+                    <p class="pt-1"><?PHP echo $ProductDetailsRow['pro_desc'];?></p>
+                    <div class="table-responsive">
+                        <table class="table table-sm borderless mb-0">
+                            <tbody class="borderless">
+                                <tr>
+                                    <th class="pl-0 w-25" scope="row"><strong>Material</strong></th>
+                                    <td><?PHP echo $ProductDetailsRow['pro_materialsused'];?></td>
+                                </tr>
+                                <tr>
+                                    <th class="pl-0 w-25" scope="row"><strong>Category</strong></th>
+                                    <td><?PHP echo $CategoryDetailsRow['cat_name'];?></td>
+                                </tr>
+                                <tr>
+                                    <th class="pl-0 w-25" scope="row"><strong>SubCategory</strong></th>
+                                    <td><?PHP echo $SubCategoryDetailsRow['sub_cat_name'];?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <?PHP if(isset($_SESSION['login'])){?>
+                        <br/>
+                        <a href="#" class="btn btn-warning btn-md mr-1 mb-2" onclick="AddToWishlist('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"><i class="fa fa-heart text-white"></i></a>
+                        <a href="#" class="btn btn-success btn-md mr-1 mb-2" onclick="AddToCart('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"><i class="fa fa-cart-plus"></i></a>
+                    <?PHP }else{?>
+                        <br/>
+                        <a href="#" class="btn btn-warning btn-md mr-1 mb-2" data-toggle="modal" data-target="#login-register-modal"><i class="fa fa-heart text-white"></i></a>
+                        <a href="#" class="btn btn-success btn-md mr-1 mb-2" data-toggle="modal" data-target="#login-register-modal"><i class="fa fa-cart-plus"></i></a>
+                    <?PHP }?>
+                </div>
+                <div class="panel-heading">
+                <br>
+                    <div class="media clearfix">
+                        <a href="#" class="pull-left" onclick="SellerView('<?PHP echo $ProductDetailsRow['seller_sno'];?>')">
+                            <img src="http://artigro.aitamsac.in/site/logo.png" alt="profile-picture">
+                        </a>
+                        <div class="media-body">
+                            <a href="#" onclick="SellerView('<?PHP echo $ProductDetailsRow['seller_sno'];?>')"><small>Seller: <span class="font-bold"><?PHP echo $UserDetailsRow['fname']." ".$UserDetailsRow['mname']." ".$UserDetailsRow['lname'];?></span> </small></a>
+                            <br>
+                            <small class="text-muted">City: <?PHP echo $CityDetailsRow['city_name'];?></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-md-4 mt-5">
+            <div class="sidebar-widget blog-box">
+                <ul class="widget-post">
+                    <li>
+                        <a href="#" class="widget-post-media">
+                        <img src="product_images/<?PHP echo $ProductDetailsRow['pro_img1'];?>" style="width:20rem;height:15rem;">
+                        </a>
+                        <div class="widget-post-info">
+                            <h6><a href="#">Picture-1</a></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="widget-post-media">
+                        <img src="product_images/<?PHP echo $ProductDetailsRow['pro_img2'];?>" style="width:20rem;height:15rem;">
+                        </a>
+                        <div class="widget-post-info">
+                            <h6><a href="#">Picture-2</a></h6>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="widget-post-media">
+                            <img src="product_images/<?PHP echo $ProductDetailsRow['pro_img3'];?>" style="width:20rem;height:15rem;">
+                        </a>
+                        <div class="widget-post-info">
+                            <h6><a href="#">Picture-3</a></h6>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<?PHP return ob_get_clean(); }
+// End Product View Card
+//  Seller Card
+function SellerCard($CityViceSellersRow,$SellerDetailsRow,$CityDetailsRow){ ob_start(); ?> 
+        <div class="col-lg-3 col-md-3 mt-5" >
+            <div class="our-team widget" >
+                <div class="team_img">
+                    <a href="#">
+                        <img src="site/seller.png" style="height:15rem;"> 
+                    </a>
+                    <ul class="social">
+                        <li><a href="mailto:<?PHP echo $SellerDetailsRow['email'];?>"><i class="fa fa-envelope"></i></a></li>
+                        <li><a href="tel:<?PHP echo $SellerDetailsRow['phone'];?>"><i class="fa fa-phone"></i></a></li>
+                    </ul>
+                </div>
+                <a href="#" onclick="SellerView('<?PHP echo $CityViceSellersRow['seller_sno'];?>')">
+                    <div class="team-content">
+                        <h3 class="title"><?PHP echo $SellerDetailsRow['fname']." ".$SellerDetailsRow['mname']." ".$SellerDetailsRow['lname'];?></h3>
+                        <span class="post"><?PHP echo $CityDetailsRow['city_name'];?></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+<?PHP return ob_get_clean(); }
+// End Seller Card
+//  Seller View Card
+function SellerViewCard($SellerDetailsRow,$CityDetailsRow,$UserDetailsRow,$ProductDetailsNoRow,$ProductDetails){ ob_start(); ?> 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-5 mt-5">
+            <div class="user-account-sidebar">
+                <aside class="user-info-wrapper">
+                    <div class="user-cover" style="background-image: url(site/artigro.png);">
+                    </div>
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <img src="site/favicon-.png" alt="User">
+                        </div>
+                        <div class="user-data">
+                            <h4><small><?PHP echo $UserDetailsRow['fname'];?></small></h4>
+                            <span><?PHP echo $CityDetailsRow['city_name'];?></span>
+                        </div>
+                    </div>
+                </aside>        
+                <nav class="list-group">
+                    <a class="list-group-item" href="#"><i class="icofont icofont-user fa-fw"></i> <?PHP echo $UserDetailsRow['fname']." ".$UserDetailsRow['mname']." ".$UserDetailsRow['lname'];?></a>
+                    <a class="list-group-item" href="#"><i class="icofont icofont-phone fa-fw"></i> <?PHP echo $UserDetailsRow['phone'];?></a>
+                    <a class="list-group-item" href="#"><i class="icofont icofont-email fa-fw"></i> <?PHP echo $UserDetailsRow['email'];?></a>
+                    <a class="list-group-item" href="#"><i class="icofont icofont-location-pin fa-fw"></i> <?PHP echo $UserDetailsRow['address'];?></a>
+                </nav>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-7 mt-5">
+            <div class="widget">
+                <div class="section-header">
+                    <h5 class="heading-design-h5">Seller Products</h5>
+                </div>   
+                <div class="row">
+                    <!--  -->
+                    <?PHP if($ProductDetailsNoRow > 0){
+                        while ($ProductDetailsRow = mysqli_fetch_array($ProductDetails)) {?>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="h-100">
+                                    <div class="product-item">
+                                        <div class="product-item-image">
+                                            <a href="#" onclick="ProductView('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"><img class="card-img-top img-fluid" src="product_images/<?PHP echo $ProductDetailsRow['pro_img1'];?>" style="height:15rem;"></a>
+                                        </div>
+                                        <a href="#" onclick="ProductView('<?PHP echo $ProductDetailsRow['pro_sno'];?>')">
+                                            <div class="product-item-body">
+                                                <h4 class="card-title"><a href="#"><?PHP echo $ProductDetailsRow['pro_name'];?></a></h4>
+                                                <h5>
+                                                    <span class="product-price"><?PHP echo $ProductDetailsRow['pro_cost'];?></span>
+                                                </h5>
+                                                <p>
+                                                    <a class="btn btn-success" href="#" onclick="ProductView('<?PHP echo $ProductDetailsRow['pro_sno'];?>')"><i class="icofont icofont-eye"></i>View</a>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div> 
+                    <?PHP } }else {?>
+                        <div class="col-lg-6 col-md-6 tags-action">
+                            <span>No Data Found!</span>
+                        </div>
+                        <?PHP }?>
+                    <!--  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?PHP return ob_get_clean(); }
+// End Seller View Card
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//================================================================
+//================================================================
 function account_activate_email_template($otp){ ob_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -182,7 +739,7 @@ function account_activate_email_template($otp){ ob_start(); ?>
                 <td height="40" class="em_height">&nbsp;</td>
                 </tr>
                 <tr>
-                <td align="center"><a href="#" target="_blank" style="text-decoration:none;"><img src="http://artigo.girishfalcon.in/assets/images/logo.png" width="230" height="80" style="display:block;font-family: Arial, sans-serif; font-size:15px; line-height:18px; color:#30373b;  font-weight:bold;" border="0" /></a></td>
+                <td align="center"><a href="#" target="_blank" style="text-decoration:none;"><img src="http://artigro.aitamsac.in/site/logo.png" width="230" height="80" style="display:block;font-family: Arial, sans-serif; font-size:15px; line-height:18px; color:#30373b;  font-weight:bold;" border="0" /></a></td>
                 </tr>
                 <tr>
                 <td height="30" class="em_height">&nbsp;</td>
@@ -202,7 +759,7 @@ function account_activate_email_template($otp){ ob_start(); ?>
                         <td height="36" class="em_height">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td valign="middle" align="center"><img src="http://artigo.girishfalcon.in/site/activate_account.png" width="333" height="303" alt="WELCOME" style="display:block; font-family:Arial, sans-serif; font-size:25px; line-height:303px; color:#c27cbb;max-width:333px;" class="em_full_img" border="0" /></td>
+                        <td valign="middle" align="center"><img src="http://artigro.aitamsac.in/site/activate_account.png" width="333" height="303" alt="WELCOME" style="display:block; font-family:Arial, sans-serif; font-size:25px; line-height:303px; color:#c27cbb;max-width:333px;" class="em_full_img" border="0" /></td>
                     </tr>
                     <tr>
                         <td height="41" class="em_height">&nbsp;</td>
@@ -214,7 +771,7 @@ function account_activate_email_template($otp){ ob_start(); ?>
                         <td valign="top" align="center">
                         <table width="210" border="0" cellspacing="0" cellpadding="0" align="center">
                             <tr>
-                            <td valign="middle" align="center" height="45" bgcolor="#007BFF" style="font-family:'Open Sans', Arial, sans-serif; font-size:17px; font-weight:bold; color:#ffffff; text-transform:uppercase;"><a href="http://artigo.girishfalcon.in/coustomer_email_verification.php?coustomer_email_verification=<?PHP echo $otp; ?>" style="color:white;text-decoration:none;">Activate</a></td>
+                            <td valign="middle" align="center" height="45" bgcolor="#e4960e" style="font-family:'Open Sans', Arial, sans-serif; font-size:17px; font-weight:bold; color:#ffffff; text-transform:uppercase;"><a href="http://artigro.aitamsac.in/coustomer_email_verification.php?coustomer_email_verification=<?PHP echo $otp; ?>" style="color:white;text-decoration:none;">Activate</a></td>
                             </tr>
                         </table>
                         </td>
@@ -237,6 +794,8 @@ function account_activate_email_template($otp){ ob_start(); ?>
     </body>
     </html>
 <?PHP return ob_get_clean(); }
+//================================================================
+//================================================================
 function forgot_pass_email_template($otp){ ob_start(); ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml">
@@ -366,7 +925,7 @@ function forgot_pass_email_template($otp){ ob_start(); ?>
                     <td height="40" class="em_height">&nbsp;</td>
                     </tr>
                     <tr>
-                    <td align="center"><a href="#" target="_blank" style="text-decoration:none;"><img src="http://artigo.girishfalcon.in/site/logo.png" width="230" height="80" style="display:block;font-family: Arial, sans-serif; font-size:15px; line-height:18px; color:#30373b;  font-weight:bold;" border="0" /></a></td>
+                    <td align="center"><a href="#" target="_blank" style="text-decoration:none;"><img src="http://artigro.aitamsac.in/site/logo.png" width="230" height="80" style="display:block;font-family: Arial, sans-serif; font-size:15px; line-height:18px; color:#30373b;  font-weight:bold;" border="0" /></a></td>
                     </tr>
                     <tr>
                     <td height="30" class="em_height">&nbsp;</td>
@@ -386,7 +945,7 @@ function forgot_pass_email_template($otp){ ob_start(); ?>
                             <td height="36" class="em_height">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td valign="middle" align="center"><img src="http://artigo.girishfalcon.in/site/reset_password.png" width="333" height="303" alt="WELCOME" style="display:block; font-family:Arial, sans-serif; font-size:25px; line-height:303px; color:#c27cbb;max-width:333px;" class="em_full_img" border="0" /></td>
+                            <td valign="middle" align="center"><img src="http://artigro.aitamsac.in/site/reset_password.png" width="333" height="303" alt="WELCOME" style="display:block; font-family:Arial, sans-serif; font-size:25px; line-height:303px; color:#c27cbb;max-width:333px;" class="em_full_img" border="0" /></td>
                         </tr>
                         <tr>
                             <td height="41" class="em_height">&nbsp;</td>
@@ -398,7 +957,7 @@ function forgot_pass_email_template($otp){ ob_start(); ?>
                             <td valign="top" align="center">
                             <table width="210" border="0" cellspacing="0" cellpadding="0" align="center">
                                 <tr>
-                                <td valign="middle" align="center" height="45" bgcolor="#007BFF" style="font-family:'Open Sans', Arial, sans-serif; font-size:17px; font-weight:bold; color:#ffffff; text-transform:uppercase;"><a href="http://artigo.girishfalcon.in/coustomer_forgot_password_verification.php?coustomer_forgot_password_verification=<?PHP echo $otp; ?>" style="color:white;text-decoration:none;">Reset password</a></td>
+                                <td valign="middle" align="center" height="45" bgcolor="#e4960e" style="font-family:'Open Sans', Arial, sans-serif; font-size:17px; font-weight:bold; color:#ffffff; text-transform:uppercase;"><a href="http://artigro.aitamsac.in/coustomer_forgot_password_verification.php?coustomer_forgot_password_verification=<?PHP echo $otp; ?>" style="color:white;text-decoration:none;">Reset password</a></td>
                                 </tr>
                             </table>
                             </td>
@@ -479,3 +1038,5 @@ function forgot_pass_email_template($otp){ ob_start(); ?>
         </body>
         </html>
         <?PHP return ob_get_clean(); }
+//================================================================
+//================================================================

@@ -5,39 +5,44 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120909275-1" type="f0492d586e82fc31f3a86f28-text/javascript"></script>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="description">
-<meta name="keywords" content="">
-<meta name="author" content="">
-<title><?php echo $site_row['title'];?></title>
-<link rel="apple-touch-icon" sizes="76x76" href="site/<?php echo $site_row['favicon'];?>">
-<link rel="icon" type="image/png" href="site/<?php echo $site_row['favicon'];?>">
-<script src="assets/js/jquery.min.js" type="text/javascript"></script>
-<script src="backscript.js" type="text/javascript"></script>
-<!-- Scrollbar Custom CSS -->
-<link rel="stylesheet" href="assets/css/my_style.css">
-<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
-<!-- /Scrollbar Custom CSS -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="assets/css/style.css" rel="stylesheet">
-<link href="assets/css/animate.css" rel="stylesheet">
-<link href="assets/css/mobile.css" rel="stylesheet">
-<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/icofont.css" rel="stylesheet" type="text/css">
-<!--<link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.css">
-<link rel="stylesheet" href="assets/plugins/owl-carousel/owl.theme.css">-->
-<style>
-
-</style>
-</head>
+  <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120909275-1" type="f0492d586e82fc31f3a86f28-text/javascript"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="<?php echo $site_row['description'];?>">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <title><?php echo $site_row['title'];?></title>
+  <link rel="apple-touch-icon" sizes="76x76" href="site/<?php echo $site_row['favicon'];?>">
+  <link rel="icon" type="image/png" href="site/<?php echo $site_row['favicon'];?>">
+  <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="backscript.js" type="text/javascript"></script>
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="assets/css/my_style.css">
+  <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+  <!-- /Scrollbar Custom CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/animate.css" rel="stylesheet">
+  <link href="assets/css/mobile.css" rel="stylesheet">
+  <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/icofont.css" rel="stylesheet" type="text/css">
+  <!--<link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.css">
+  <link rel="stylesheet" href="assets/plugins/owl-carousel/owl.theme.css">-->
+  <style>
+    .spinner-wrapper {
+      position: fixed;
+      top: 0;
+      width: cover;
+      background-color: #ff6347;
+      z-index: 999999;
+    }
+  </style>
+  </head>
 <body class="">
 <!--===============================================================-->
 <!--===============================================================-->
-<div class="modal fade login-modal-main " id="bd-example-modal">
+<div class="modal fade login-modal-main " id="login-register-modal">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -66,11 +71,11 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
                       <input type="password" class="form-control" name="passkey" id="passkey" placeholder="********">
                     </fieldset>
                     <p>
-                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 mt-2">
                           <input type="checkbox" class="custom-control-input">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Remember me </span>
-                          <a href="#" class="custom-control-description pull-right ml-lg-5"onclick="show_Forgot_Password_Form()"><i class="fas fa-user-lock"></i> Forgot Password</a>
+                          <a href="#" class="custom-control-description"onclick="show_Forgot_Password_Form()" style="margin-left:8rem;"><i class="fas fa-user-lock "></i> Forgot Password</a>
                         </label>
                       </p>
                     <fieldset class="form-group">
@@ -88,13 +93,6 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
                       <label for="Forgot_Email_Mobile">Enter Email/Mobile number</label>
                       <input type="text" class="form-control" name="Forgot_Email_Mobile" id="Forgot_Email_Mobile" placeholder="username">
                     </fieldset>
-                    <p>
-                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                      <input type="checkbox" class="custom-control-input">
-                      <span class="custom-control-indicator"></span>
-                      <span class="custom-control-description">Remember me </span>
-                    </label>
-                  </p>
                     <h5 class="text-danger ajax_Forgot_Password_responce"></h5>
                     <fieldset class="form-group"><br>
                       <button type="button" class="btn btn-lg btn-theme-round btn-block" onclick="Forgot_Password()">Enter</button>
@@ -124,20 +122,20 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
                       <input type="password" class="form-control" name="register_confirm_passkey" id="register_confirm_passkey" placeholder="********">
                     </fieldset>
                     <p>
-                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 mt-2">
                       <input type="checkbox" class="custom-control-input" name="TermAndConditionscheckbox" id="TermAndConditionscheckbox">
                       <span class="custom-control-indicator"></span>
                       <span class="custom-control-description">I Agree with Term and Conditions </span>
                     </label>
                     </p>
                     <fieldset class="form-group">
-                        <span class=" custom-control-description registration-alerts"></span>
+                        <span class="text-danger custom-control-description registration-alerts"></span>
                     </fieldset>
-                    <fieldset class="form-group"><br>
-                      <input type="button" class="btn btn-lg btn-theme-round btn-block" onclick="UserRegistration()"value="Create Your Account"/>
+                    <fieldset class="form-group">
+                      <input type="button" class="btn btn-lg btn-theme-round btn-block" onclick="UserRegistration()" value="Create Your Account"/>
                     </fieldset>
                   </form>
-                  
+                  </br>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -160,7 +158,117 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
     </div>
   </div>
 </div>
-<!--===============================================================-->
+<!--=============================================================================================================-->
+<!-- Product Filter Modal -->
+<!--=============================================================================================================-->
+<div class="modal fade " id="AjaxProductFilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+      <div class="">
+        <div class="widget bg-dark"> <!--    -->
+            <div class="category_sidebar mt-4">
+                <aside class="sidebar_widget bg-dark">
+                    <div class="widget_title">
+                        <h5 class="heading-design-h5 text-white"><i class="icofont icofont-filter"></i> Products Filer
+                          <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </h5>
+                    </div>
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="card bg-dark">
+                            <div class="card-header" role="tab" id="headingThree">
+                                <h5 class="mb-0">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#CategoryFilerDropdown" aria-expanded="false" aria-controls="collapseThree">
+                                      Category
+                                        <span><i class="fa fa-plus-square-o"></i></span>
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="CategoryFilerDropdown" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="card-block">
+                                    <ul class="trends">
+                                      <?PHP
+                                        $SelectCategory="SELECT * FROM `categories` ORDER BY `categories`.`cat_sno` ASC";
+                                        $SelectCategorySql=mysqli_query($connect, $SelectCategory);
+                                        while ($SelectCategoryRow=mysqli_fetch_array($SelectCategorySql)) { ?>
+                                            <li>
+                                                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                                                    <input type="checkbox" class="custom-control-input CommonProductFilter ProductCategories" value="<?PHP echo  $SelectCategoryRow['cat_sno'];?>" id="categoriesCheck<?PHP echo  $SelectCategoryRow['cat_sno'] ?>" onchange="FilterSubCategories()">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description" for="categoriesCheck<?PHP echo  $SelectCategoryRow['cat_sno'] ?>"><?PHP echo  $SelectCategoryRow['cat_name'];?></span>
+                                                </label>
+                                            </li>
+                                        <?PHP } ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="card bg-dark">
+                            <div class="card-header " role="tab" id="headingThree">
+                                <h5 class="mb-0">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#SubCategoryFilerDropdown" aria-expanded="false" aria-controls="collapseThree">
+                                      SubCategory
+                                        <span><i class="fa fa-plus-square-o"></i></span>
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="SubCategoryFilerDropdown" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="card-block">
+                                    <ul class="trends Ajax-Filter-SubCategories-Response">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <!--  -->
+                        <div class="card bg-dark">
+                            <div class="card-header " role="tab" id="headingThree">
+                                <h5 class="mb-0">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#MaterialFilerDropdown" aria-expanded="false" aria-controls="collapseThree">
+                                      Material
+                                        <span><i class="fa fa-plus-square-o"></i></span>
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="MaterialFilerDropdown" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="card-block">
+                                    <ul class="trends">
+                                      <?PHP 
+                                        $SelectMaterial="SELECT DISTINCT(`pro_materialsused`) FROM `products` ORDER BY `products`.`Pro_sno` ASC";
+                                        $SelectMaterialSql=mysqli_query($connect,$SelectMaterial);
+                                        while ($SelectMaterialRow=mysqli_fetch_array($SelectMaterialSql)) { ?>
+                                            <li>
+                                                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                                                    <input type="checkbox" class="custom-control-input CommonProductFilter ProductMaterial" value="<?PHP echo $SelectMaterialRow['pro_materialsused'];?>" id="materialCheck<?PHP echo $SelectMaterialRow['pro_materialsused'] ?>" onchange="ProductsFilter()">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description" for="materialCheck<?PHP echo $SelectMaterialRow['pro_materialsused'] ?>"><?PHP echo $SelectMaterialRow['pro_materialsused'];?></span>
+                                                </label>
+                                            </li>
+                                        <?PHP } ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                    
+                </aside>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning text-white" data-dismiss="modal">Filter</button>
+          <button type="button" class="btn btn-secondary" onclick="ResetProductFilter()" data-dismiss="modal">Reset & Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--=============================================================================================================-->
+<!-- End Product Filter Modal -->
+<!--=============================================================================================================-->
 <nav class="navbar navbar-light navbar-expand-lg bg-faded  osahan-menu-top-5 main-bg-color ">
   <div class="container">
     <!-- side togle-->
@@ -168,7 +276,7 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
           <i class="fa fa-bars text-white" aria-hidden="true" ></i>
       </button>
     <!-- end side togle-->
-    <a class="navbar-brand border  rounded-circle user-logo " href="index.php" style="disply:none;">
+    <a class="navbar-brand border  rounded-circle user-logo" href="index.php" style="display:none;">
       <img src="site/user.png" class="rounded-circle" alt="site/<?php echo $site_row['title'];?>" width="35" height="35" >
     </a>
     <a class="navbar-brand nav-logo" href="index.php">
@@ -177,7 +285,7 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
 
     <!--===============================================================-->
     <div class="navbar-collapse side_nav_dismiss" id="navbarNavDropdown">
-      <div class="navbar-nav mr-auto mt-2 mt-lg-0 margin-auto top-categories-search-main">
+      <div class="navbar-nav mr-auto mt-2 mt-lg-0 margin-auto top-categories-search-main" >
         <div class="top-categories-search btn-radius">
           <div class="input-group">
             <span class="input-group-btn categories-dropdown" >
@@ -186,6 +294,10 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
                   categories
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">
+                    <input type="radio" name="categories" class="common_filer_selector categories" value="All" id="categoriesCheckAll" onclick="filter_category_cards()" style="display:none;"> 
+                    <label  for="categoriesCheckAll" style="cursor: pointer;"><i class="fas fa-city"></i>All</label>
+                  </a>
                   <?PHP $selectcategoryquery="SELECT * FROM `categories`";
                       $selectcategorysql=mysqli_query($connect,$selectcategoryquery);
                       while($categories_row=mysqli_fetch_array($selectcategorysql)){ ?>
@@ -197,9 +309,9 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
                 </div>
               </div>
             </span>
-            <input class="form-control" placeholder="Search products & brands" id="search_text" aria-label="Search products & brands" type="text">
+            <input class="form-control" placeholder="Search products & brands" id="search_text" aria-label="Search products & brands" type="text" >
             <span class="input-group-btn">
-              <button class="btn bg-warning btn-radius" type="button" onclick="filter_category_cards()" ><i class="icofont icofont-search-alt-2"></i> Search</button>
+              <button class="btn bg-warning btn-radius" type="button" onclick="ProductsFilter()" ><i class="icofont icofont-search-alt-2"></i> Search</button>
             </span>
           </div>
         </div>
@@ -207,17 +319,44 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
       <!--===============================================================-->
       <div class="my-2 my-lg-0">
         <ul class="list-inline main-nav-right">
+          <?PHP  if(isset($_SESSION['login'])){ ?>
+            <li class="list-inline-item">
+              <a class="btn  btn-radius text-white border-warning"href="#" onclick="MyCartPageCall()"><i class="icofont icofont-shopping-cart"></i>&nbsp Cart &nbsp</a>
+            </li>
+          <?PHP  } ?>
+            <li class="list-inline-item">
+                <a class="btn  btn-radius text-white border-warning" data-toggle="modal" data-target="#AjaxProductFilterModal" href="#"><i class="fa fa-filter"></i> Filter</a>
+            </li>
           <?PHP  if(!isset($_SESSION['login'])){ ?>
-          <li class="list-inline-item">
-            <a class="btn  btn-radius text-white border-warning" data-toggle="modal" data-target="#bd-example-modal" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign-In</a>
-          </li>
-          <?PHP } else{ ?>
-          <li class="list-inline-item">
-            <a class="btn  btn-radius text-white border-warning"href="#" onclick="MyCartPageCall()"><i class="icofont icofont-shopping-cart"></i>&nbsp Cart &nbsp</a>
-          </li>
-          <li class="list-inline-item">
-            <a class="btn  btn-radius text-white border-warning"href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign-Out</a>
-          </li>
+            <li class="list-inline-item">
+              <a class="btn  btn-radius text-white border-warning" data-toggle="modal" data-target="#login-register-modal" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign-In</a>
+            </li>
+          <?PHP }?>
+          <?PHP if(isset($_SESSION['login'])){?>
+            <li class="list-inline-item">
+              <a href="#"class="btn  btn-radius text-white border-warning" data-toggle="modal" data-target="#LogoutModal"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign-Out</a>
+            </li>
+            <!-- Sign-out Modal -->
+            <div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Log out</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      Are you sure do you want to log out..?
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <a  href="logout.php" class="btn btn-primary" >Yes</a>
+                  </div>
+                  </div>
+              </div>
+            </div>
+            <!-- /Sign-out Modal -->
           <?PHP } ?>
         </ul>
       </div>
@@ -231,6 +370,9 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
       <ul class="navbar-nav mr-auto margin-auto">
         <li class="active Home">
           <a href="#" class="nav-link" onclick="AjaxIndexPageCall()">Home</a>
+        </li>
+        <li class="nav-item Products">
+          <a class="nav-link" href="#" onclick="ProductsPageCall()">Products</a>
         </li>
         <li class="nav-item Categories">
           <a class="nav-link" href="#" onclick="CategoriesPageCall()">Categories</a>
@@ -250,16 +392,15 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
               <a class="dropdown-item MyWhishlist" href="#" onclick="MyWhishlistPageCall()"> My Whishlist</a>
               <a class="dropdown-item MyCart" href="#" onclick="MyCartPageCall()"> My Cart</a>
               <a class="dropdown-item MyOrders" href="#" onclick="MyOrdersPageCall()"> My Orders</a>
-              <?PHP  if(!isset($_SESSION['seller']) && !isset($_SESSION['cs'])){ ?>
-                <a class="dropdown-item MyProfile" href="#" onclick="MyProfilePageCall()"> My Profile</a>
-              <?PHP }?>
+              <a class="dropdown-item MyProfile" href="#" onclick="MyProfilePageCall()"> My Profile</a>
+              <a class="dropdown-item ChangePassword" href="#" onclick="ChangePasswordPageCall()">Change Password</a>
             </div>
           </li>
-          <?PHP  if(!isset($_SESSION['seller'])){ ?>
+          <?PHP  if($_SESSION['login']['category'] == 1){ ?>
             <li class="nav-item ActAsSeller">
               <a class="nav-link" href="#" onclick="AjaxSellerRegistrationPageCall()">Act As Seller</a>
             </li>
-          <?PHP }else{ ?>
+          <?PHP }else if($_SESSION['login']['category'] == 2){ ?>
           <li class="nav-item dropdown Dashboard">
             <a class="nav-link" href="#" type="button" id="MyAccountDropdownMenu" data-toggle="dropdown" aria-haspopup="true" >
               Dashboard &nbsp<i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -270,16 +411,7 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
               <a class="dropdown-item MyOrders" href="#" onclick="AjaxMyProductsPageCall()">My Products</a>
             </div>
           </li>
-        <?PHP } 
-        if (!isset($_SESSION['cs'])){?>
-          <li class="nav-item ActAsCourierServices" >
-            <a class="nav-link" href="#" onclick="AjaxCourierServicesRegistrationPageCall()">Act As Courier Services</a>
-          </li>
-        <?PHP }else{ ?>
-          <li class="nav-item Dashboard">
-            <a class="nav-link" href="#">Dashboard</a>
-          </li>
-        <?PHP } }?>
+        <?PHP }  }?>
       </ul>
     </div>
   </div>
@@ -295,8 +427,11 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
       <img src="site/<?php echo $site_row['navlogo'];?>" alt="site/<?php echo $site_row['title'];?>" width="100" >
     </div>
     <ul class="list-unstyled components ">
-      <li class=" nav-list border-warning border-bottom active Home ">
+        <li class=" nav-list border-warning border-bottom active Home ">
           <a href="#" class="nav-link side_nav_dismiss" onclick="AjaxIndexPageCall()">Home</a>
+        </li>
+        <li class="nav-list border-warning border-bottom Products">
+          <a class="nav-link side_nav_dismiss" href="#" onclick="ProductsPageCall()">Products</a>
         </li>
         <li class="nav-list border-warning border-bottom Categories">
           <a class="nav-link side_nav_dismiss" href="#" onclick="CategoriesPageCall()">Categories</a>
@@ -308,25 +443,31 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
           <a class="nav-link side_nav_dismiss" href="#"onclick="SellersPageCall()" >Sellers</a>
         </li> 
       <?PHP  if(isset($_SESSION['login'])){ ?>
-          <li class="nav-list border-warning border-bottom MyWhishlist">
-              <a class="nav-link side_nav_dismiss" href="#" onclick="MyWhishlistPageCall()">My Whishlist</a>
+        <li  class="nav-list border-warning border-bottom ActAsSeller My_Account">
+              <a href="#My_Account" data-toggle="collapse" aria-expanded="false">My Account &nbsp<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+              <ul class="collapse list-unstyled" id="My_Account">
+                <li class="nav-list border-warning border-bottom MyWhishlist">
+                  <a class="nav-link side_nav_dismiss" href="#" onclick="MyWhishlistPageCall()">My Whishlist</a>
+                </li>
+                <li class="nav-list border-warning border-bottom MyCart">
+                  <a class="nav-link side_nav_dismiss" href="#" onclick="MyCartPageCall()">My Cart</a>
+                </li>
+                <li class="nav-list border-warning border-bottom MyOrders">
+                  <a class="nav-link side_nav_dismiss" href="#" onclick="MyOrdersPageCall()">My Orders</a>
+                </li>
+                <li class="nav-list border-warning border-bottom MyProfile">
+                  <a class="nav-link side_nav_dismiss" href="#" onclick="MyProfilePageCall()">My Profile</a>
+                </li>
+                <li class="nav-list border-warning border-bottom ChangePassword">
+                  <a class="nav-link side_nav_dismiss ChangePassword" href="#" onclick="ChangePasswordPageCall()">Change Password</a>
+                </li>
+              </ul>
             </li>
-            <li class="nav-list border-warning border-bottom MyCart">
-              <a class="nav-link side_nav_dismiss" href="#" onclick="MyCartPageCall()">My Cart</a>
-            </li>
-            <li class="nav-list border-warning border-bottom MyOrders">
-              <a class="nav-link side_nav_dismiss" href="#" onclick="MyOrdersPageCall()">My Orders</a>
-            </li>
-            <?PHP  if(!isset($_SESSION['seller']) && !isset($_SESSION['cs'])){ ?>
-              <li class="nav-list border-warning border-bottom MyProfile">
-                <a class="nav-link side_nav_dismiss" href="#" onclick="MyProfilePageCall()">My Profile</a>
-              </li>
-              <?PHP }?>
-          <?PHP  if(!isset($_SESSION['seller'])){ ?>
+          <?PHP  if($_SESSION['login']['category'] == "1"){ ?>
             <li class="nav-list border-warning border-bottom ActAsSeller">
               <a class="nav-link side_nav_dismiss" href="#" onclick="AjaxSellerRegistrationPageCall()">Act As Seller</a>
             </li>
-          <?PHP }else{ ?>
+          <?PHP }elseif ($_SESSION['login']['category'] == 2) { ?>
             <li  class="nav-list border-warning border-bottom ActAsSeller Dashboard">
               <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Dashboard &nbsp<i class="fa fa-caret-down" aria-hidden="true"></i></a>
               <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -341,16 +482,16 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
                 </li>
               </ul>
             </li>
-        <?PHP } 
-        if (!isset($_SESSION['cs'])){?>
-          <li class="nav-list border-warning border-bottom ActAsCourierServices">
-            <a class="nav-link side_nav_dismiss" href="#" onclick="AjaxCourierServicesPageCall()">Act As Courier Services</a>
-          </li>
-        <?PHP }else{ ?>
-          <li class="nav-list border-warning border-bottom Dashboard">
-            <a class="nav-link side_nav_dismiss" href="#">Dashboard</a>
-          </li>
-        <?PHP } }?>
+        <?PHP }}?>
+        <li class="nav-item side_nav_dismiss About">
+          <a class="nav-link" href="#" onclick="AboutPageCall()" >About</a>
+        </li>
+        <li class="nav-item side_nav_dismiss Contact">
+          <a class="nav-link" href="#" onclick="ContactPageCall()">Contact</a>
+        </li>
+        <li class="nav-item side_nav_dismiss TermsAndConditions">
+          <a class="nav-link" href="#" onclick="TermsAndConditionsPageCall()">Terms & Conditions</a>
+        </li>
     </ul>
   </nav>
 </div>
@@ -359,13 +500,17 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
 <!--===============================================================-->
 
 <!--===============================================================-->
-
 <section class="AjaxContentDisplay side_nav_dismiss">
 
 </section>
+<!--Spinner-->
+<div class="spinner-wrapper">
+  <div class="spinner"><img src="site/loder.gif" style="width:cover;"/></div>
+</div>
+<!--End Spinner-->
 <!--===============================================================-->
 <!--===============================================================-->
-<footer class="side_nav_dismiss">
+<footer class="side_nav_dismiss my_footer">
   <section class="footer-Content main-bg-color" style="">
     <div class="container main-bg-color">
       <div class="row">
@@ -373,7 +518,7 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
           <div class="footer-widget">
             <h3 class="block-title">About</h3>
             <div class="textwidget">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis tincidunt est, et euismod purus suscipit quis. Etiam euismod ornare elementum. Sed ex est, Sed ex est, consectetur eget consectetur, Lorem ipsum dolor sit amet...</p>
+              <p><?php echo $site_row['description'];?></p>
             </div>
           </div>
         </div>
@@ -381,41 +526,13 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
           <div class="footer-widget">
             <h3 class="block-title">Quick Links</h3>
             <ul class="menu">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">All Categories</a></li>
-              <li><a href="#">Cities</a></li>
-              <li><a href="#">Sellers</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3">
-          <div class="footer-widget">
-            <h3 class="block-title">Quick Links</h3>
-            <ul class="menu">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">All Categories</a></li>
-              <li><a href="#">Cities</a></li>
-              <li><a href="#">Sellers</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3">
-          <div class="footer-widget">
-            <h3 class="block-title">Quick Links</h3>
-            <ul class="menu">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">All Categories</a></li>
-              <li><a href="#">Cities</a></li>
-              <li><a href="#">Sellers</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#" onclick="AjaxIndexPageCall()">Home</a></li>
+              <li><a href="#" onclick="AboutPageCall()">About</a></li>
+              <li><a href="#" onclick="CategoriesPageCall()">All Categories</a></li>
+              <li><a href="#" onclick="CitiesPageCall()">Cities</a></li>
+              <li><a href="#" onclick="SellersPageCall()">Sellers</a></li>
+              <li><a href="#" onclick="ContactPageCall()">Contact</a></li>
+              <li><a href="#" onclick="TermsAndConditionsPageCall()">Terms & Conditions</a></li>
             </ul>
           </div>
         </div>
@@ -473,8 +590,19 @@ $site_row=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM `site`"));
 <!-- jQuery Custom Scroller CDN -->
 <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="assets/js/my_script.js"></script>
+
 <script>
-</script>
+		$(document).ready(function() {
+		//Preloader
+		preloaderFadeOutTime = 500;
+		function hidePreloader() {
+		var preloader = $('.spinner-wrapper');
+		preloader.fadeOut(preloaderFadeOutTime);
+		}
+		hidePreloader();
+		});
+    
+		</script>
 <!--===============================================================-->
 <!--===============================================================-->
 </body>

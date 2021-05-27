@@ -1,16 +1,5 @@
 <!--========================================================-->
-<div class="osahan-breadcrumb">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#"><i class="icofont icofont-ui-home"></i> Home</a></li>
-                    <li class="breadcrumb-item">Seller Registration</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
+
 <section class="element_page">
     <div class="container">
         <div class="row">
@@ -50,10 +39,10 @@
                                             <input list="citylist" class="form-control" name="selectcity" id="selectcity" placeholder="Select or Enter your City">
                                                 <datalist id="citylist" >
                                                     <?php 
-                                                    $selectcategoryquery="SELECT * FROM `cities`";
-                                                    $selectcategorysql=mysqli_query($connect,$selectcategoryquery);
-                                                    while($selectcategoryrow=mysqli_fetch_array($selectcategorysql)){ ?>
-                                                        <option value="<?PHP echo$selectcategoryrow['city_name'];?>">
+                                                    include "db.php";
+                                                    $selectcategory=mysqli_query($connect,"SELECT * FROM `cities` WHERE `city_sno` != ''");
+                                                    while($selectcategoryrow=mysqli_fetch_array($selectcategory)){ ?>
+                                                        <option value="<?PHP echo $selectcategoryrow['city_name'];?>">
                                                     <?PHP }?>
                                                 </datalist>
                                         </fieldset>
@@ -74,5 +63,6 @@
         </div>
     </div>
 </section>
+
 
 <!--========================================================-->

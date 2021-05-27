@@ -25,10 +25,7 @@ if (isset($_POST['add_category']) && isset($_POST['AddCategory'])) {
             
         }
     }
-
-
-
-
+    
 if (isset($_POST['displaymycategories'])) {
     $seller_id=$_SESSION['seller']['seller_sno'];
 	$selectcategoryquery="SELECT * FROM `categories` WHERE `seller_sno`='$seller_id'";

@@ -18,13 +18,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="product_images/download (8).jpg" class="d-block w-100" alt="..." style="height:370px">
+      <img src="site/banners/banner  (1).JPG" class="d-block w-100" alt="..." style="height:370px">
     </div>
     <div class="carousel-item">
-      <img src="product_images/download (7).jpg" class="d-block w-100" alt="..." style="height:370px">
+      <img src="site/banners/banner  (2).jpg" class="d-block w-100" alt="..." style="height:370px">
     </div>
     <div class="carousel-item">
-      <img src="product_images/download (6).jpg" class="d-block w-100" alt="..." style="height:370px">
+      <img src="site/banners/banner  (3).jpg" class="d-block w-100" alt="..." style="height:370px">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -50,3 +50,26 @@
 	<!-- /container -->
 </div>
 <!-- /SECTION -->
+<section class="hot-offers main-bg-color mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="carousel-section-header">
+            <h5 class="heading-design-h5 pull-left">All Products </h5>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <a class="btn btn-radius  border-warning pull-right" data-toggle="modal" data-target="#AjaxProductFilterModal" href="#"><i class="fa fa-filter"></i> Filter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+	<!-- row -->
+		<div class="row Ajax-Product-Filter">		
+		</div>
+	<!-- /row -->
+	</div>
+
+
