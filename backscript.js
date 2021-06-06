@@ -3,15 +3,16 @@
 //================================================================
 AjaxIndexPageCall();
 //-----------------------
+
 function AjaxIndexPageCall(){
     $.ajax({
         url: "AjaxIndex.php",
         success: function (result) {
             $(".AjaxContentDisplay").html(result);
-            $(".Products,.ChangePassword,.Categories,.Cities,.Sellers,.MyWhishlist,.MyCart,.MyOrders,.MyProfile,.ActAsSeller,.Dashboard,.ActAsCourierServices").removeClass("active");
-            $(".Home").addClass("active");
-            FilterCategoryCards();
-            ProductsFilter();
+            // $(".Products,.ChangePassword,.Categories,.Cities,.Sellers,.MyWhishlist,.MyCart,.MyOrders,.MyProfile,.ActAsSeller,.Dashboard,.ActAsCourierServices").removeClass("active");
+            // $(".Home").addClass("active");
+            // FilterCategoryCards();
+            // ProductsFilter();
             //setInterval(function(){ FilterCategoryCards(); },30000;
         }
     });
